@@ -1,0 +1,57 @@
+﻿@page "/"
+
+<h2 class="bg-light border p-2">
+    First Room
+</h2>
+Room: @Room.Name
+<br/>
+Price: @Room.Price
+<br/>
+<input type="number" @bind-value="@Room.Price" @bind-value:event="onchange"/>
+@test
+<br/>
+<input type="checkbox" checked="@(Room.IsActive? "checked":null)" @bind-value="Room.IsActive"/>
+
+<p>
+    This room is @(Room.IsActive? "active":"Inactive")
+</p>
+
+<select @bind="SelectedRoomPropValue">
+    @foreach (var prop in Room.RoomProps)
+    {
+        <option value="@prop.Value">@prop.Name</option>
+    }
+</select>
+<span>The value of the selected room prop is: @SelectedRoomPropValue</span>
+
+
+@code
+{
+    string SelectedRoomPropValue = "";
+    string test = "";
+
+    BlazorRoom Room = new BlazorRoom
+    {
+        Id = 1,
+        Name = "Room 1",
+        IsActive = true,
+        Price = 499,
+        RoomProps = new List<BlazorRoomProp>
+        {
+            new BlazorRoomProp
+            {
+                Id = 1, Name = "Sq Ft", Value = "100"
+            },
+
+            new BlazorRoomProp
+            {
+                Id = 2, Name = "Occupancy", Value = "3"
+            }
+        }
+    };
+
+    public void Onchange()
+    {
+        test = "bah bah";
+    }
+}

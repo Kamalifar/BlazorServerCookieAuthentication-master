@@ -1,0 +1,77 @@
+﻿@page "/list"
+<div class="border p-2 mt-3">
+    <h2 class="text-info">Rooms List</h2>
+    <table class="table table-dark">
+        @foreach(var room in Rooms)
+        {
+            <tr>
+                <td>
+                    <input type="text" @bind-value="room.Name" @bind-value:event="oninput"/>
+                </td>
+                <td>
+                    <input type="text" @bind-value="room.Price" @bind-value:event="oninput"/>
+                </td>
+                @foreach (var roomProp in room.RoomProps)
+                {
+                    <td>
+                        @roomProp.Name, @roomProp.Value
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+
+    @foreach(var room in Rooms)
+    {
+        <p>@room.Name's price is @room.Price.</p>
+    }
+</div>
+@code
+{
+    string SelectedRoomPropValue = "";
+
+    List<BlazorRoom> Rooms = new List<BlazorRoom>();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Rooms.Add(new BlazorRoom
+        {
+            Id = 1,
+            Name = "Room 1",
+            IsActive = true,
+            Price = 499,
+            RoomProps = new List<BlazorRoomProp>
+            {
+                new BlazorRoomProp
+                {
+                    Id = 1, Name = "Sq Ft", Value = "100"
+                },
+                new BlazorRoomProp
+                {
+                    Id = 2, Name = "Occupancy", Value = "3"
+                }
+            }
+        });
+
+        Rooms.Add(new BlazorRoom
+        {
+            Id = 2,
+            Name = "Room 2",
+            IsActive = true,
+            Price = 399,
+            RoomProps = new List<BlazorRoomProp>
+            {
+                new BlazorRoomProp
+                {
+                    Id = 1, Name = "Sq Ft", Value = "250"
+                },
+                new BlazorRoomProp
+                {
+                    Id = 2, Name = "Occupancy", Value = "4"
+                }
+            }
+        });
+    }
+}

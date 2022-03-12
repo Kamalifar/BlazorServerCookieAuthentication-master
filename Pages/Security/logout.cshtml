@@ -1,0 +1,19 @@
+﻿@page
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+@using Microsoft.AspNetCore.Identity
+
+
+
+@functions
+{
+    public async Task<IActionResult> OnGet()
+    {
+        if (HttpContext.User!=null)
+        {
+            <p>شما با موفقیت از برنامه خارج شدید</p>
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+        return Redirect("~/");
+    }
+}

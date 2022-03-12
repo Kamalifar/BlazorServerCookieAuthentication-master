@@ -1,0 +1,44 @@
+﻿@page "/register"
+@page "/register/{id:int}"
+@inject IUsersService usersService
+@inject NavigationManager navigationManager
+<h3>ثبت نام</h3>
+<EditForm Model="UserRegisterModel" OnValidSubmit="CreateUser">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    @*<ValidationSummary></ValidationSummary>*@
+    <div class="form-group">
+        <label>نام کاربری</label>
+        <InputText @bind-Value="UserRegisterModel.Username" placeholder="نام کاربری" class="form-control"></InputText>
+        <ValidationMessage For="()=>UserRegisterModel.Username"></ValidationMessage>
+    </div>
+    <div class="form-group">
+        <label>کلمه عبور</label>
+        <InputText type="password" @bind-Value="UserRegisterModel.Password" placeholder="کلمه عبور" class="form-control"></InputText>
+        <ValidationMessage For="()=>UserRegisterModel.Password"></ValidationMessage>
+    </div>
+    <div class="form-group">
+        <label>بازنویسی کلمه عبور</label>
+        <InputText type="password" @bind-Value="UserRegisterModel.ConfirmPassword" placeholder="لطفا کلمه عبور را مجددا وارد نمایید" class="form-control"></InputText>
+        <ValidationMessage For="()=>UserRegisterModel.ConfirmPassword"></ValidationMessage>
+    </div>
+    <div class="form-group">
+        <label>نام نمایشی</label>
+        <InputText @bind-Value="UserRegisterModel.DisplayName" placeholder="نام نمایشی مورد نظر" class="form-control"></InputText>
+        <ValidationMessage For="()=>UserRegisterModel.DisplayName"></ValidationMessage>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">ساخت کاربر</button>
+    </div>
+</EditForm>
+@code {
+    private UserRegisterDTO UserRegisterModel = new UserRegisterDTO();
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    private async Task CreateUser()
+    {
+        UserRegisterModel = await usersService.CreateUserAsync(UserRegisterModel);
+        navigationManager.NavigateTo("userlist");
+    }
+}

@@ -1,0 +1,101 @@
+﻿@page "/hotel-room/create"
+@page "/hotel-room/edit/{Id:int}"
+@using Microsoft.AspNetCore.Components
+@inject IHotelRoomService HotelRoomService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
+
+<div class="alert-info"><h4>@notification</h4></div>
+<div class="row mt-2 mb-5">
+    <h3 class="card-title text-info mb-3 ml-3">@Title Hotel Room</h3>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <EditForm Model="HotelRoomModel" OnValidSubmit="HandleHotelRoomUpsert">
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+                    <ValidationSummary></ValidationSummary>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <InputText @bind-Value="HotelRoomModel.Name" class="form-control"></InputText>
+                        <ValidationMessage For="()=>HotelRoomModel.Name"></ValidationMessage>
+                    </div>
+                    <div class="form-group">
+                        <label>Occupancy</label>
+                        <InputNumber @bind-Value="HotelRoomModel.Occupancy" class="form-control"></InputNumber>
+                        <ValidationMessage For="()=>HotelRoomModel.Occupancy"></ValidationMessage>
+                    </div>
+                    <div class="form-group">
+                        <label>Rate</label>
+                        <InputNumber @bind-Value="HotelRoomModel.RegularRate" class="form-control"></InputNumber>
+                        <ValidationMessage For="()=>HotelRoomModel.RegularRate"></ValidationMessage>
+                    </div>
+                    <div class="form-group">
+                        <label>Sq ft.</label>
+                        <InputText @bind-Value="HotelRoomModel.SqFt" class="form-control"></InputText>
+                    </div>
+                    <div class="form-group">
+                        <label>Details</label>
+                        <InputTextArea @bind-Value="HotelRoomModel.Details" class="form-control"></InputTextArea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">@Title Room</button>
+                        <NavLink href="hotel-room" class="btn btn-secondary">Back to Index</NavLink>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code
+{
+    private string notification = "";
+    private HotelRoomDTO HotelRoomModel = new HotelRoomDTO();
+    private string Title = "Create";
+    [Parameter]
+    public int? Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id.HasValue)
+        {
+            // Update Mode
+            Title = "Update";
+            HotelRoomModel = await HotelRoomService.GetHotelRoomAsync(Id.Value);
+        }
+        else
+        {
+            // Create Mode
+            HotelRoomModel = new HotelRoomDTO();
+        }
+    }
+
+    private async Task HandleHotelRoomUpsert()
+    {
+        var isRoomUnique = await HotelRoomService.IsRoomUniqueAsync(HotelRoomModel.Name, HotelRoomModel.Id);
+        if (!isRoomUnique)
+        {
+            notification = string.Format("the room {0} already exists", HotelRoomModel.Name);
+            await JsRuntime.ToastrError($"The room name: `{HotelRoomModel.Name}` already exists.");
+            return;
+        }
+
+        if (HotelRoomModel.Id != 0 && Title == "Update")
+        {
+            // Update Mode
+            var updateResult = await HotelRoomService.UpdateHotelRoomAsync(HotelRoomModel.Id, HotelRoomModel);
+            notification = string.Format("the {0} updated successfully.", HotelRoomModel.Name);
+            await JsRuntime.ToastrSuccess($"The `{HotelRoomModel.Name}` updated successfully.");
+        }
+        else
+        {
+            // Create Mode
+            var createResult = await HotelRoomService.CreateHotelRoomAsync(HotelRoomModel);
+            notification = string.Format("the {0} created successfully.", HotelRoomModel.Name);
+            await JsRuntime.ToastrSuccess($"The `{HotelRoomModel.Name}` created successfully.");
+        }
+
+        NavigationManager.NavigateTo("hotel-room");
+    }
+}

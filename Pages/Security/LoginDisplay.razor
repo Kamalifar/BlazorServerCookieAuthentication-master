@@ -1,0 +1,10 @@
+﻿<AuthorizeView>
+    <Authorized>
+        سلام @context.User.Identity.Name
+        <a href="Security/Logout">خروج</a>
+    </Authorized>
+    <NotAuthorized>
+        <a href="Register">ثبت نام</a>
+        <a href="Login">ورود</a>
+    </NotAuthorized>
+</AuthorizeView>

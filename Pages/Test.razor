@@ -1,0 +1,45 @@
+﻿@page "/test2"
+
+<div class="">
+<input value="@Value" @oninput="@OnInputChange" />
+<h4>@Value</h4>
+</div>
+@code {
+    BlazorRoom Room = new BlazorRoom
+    {
+        Id = 1,
+        Name = "Room 1",
+        IsActive = true,
+        Price = 499,
+        RoomProps = new List<BlazorRoomProp>
+        {
+            new BlazorRoomProp
+            {
+                Id = 1, Name = "Sq Ft", Value = "100"
+            },
+
+            new BlazorRoomProp
+            {
+                Id = 2, Name = "Occupancy", Value = "3"
+            }
+        }
+    };
+
+
+
+    public string Value { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Value = Room.Name;
+    }
+
+    
+    private void OnInputChange(ChangeEventArgs args )
+    {
+        Value = (string)args.Value;
+        Value = Value.ToUpper();
+    }
+}

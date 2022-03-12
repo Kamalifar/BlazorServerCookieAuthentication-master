@@ -1,0 +1,63 @@
+﻿@page "/userlist"
+@inject IUsersService usersService
+<h3>لیست کاربران</h3>
+
+<div class="row mt-4">
+    <div class="col-8">
+        <h4 class="card-title text-info">Hotel Rooms</h4>
+    </div>
+    <div class="col-3 offset-1">
+        <NavLink href="/register" class="btn btn-info">اضافه کردن کاربر جدید</NavLink>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>نام کاربری</th>
+                    <th>نقش</th>
+                    <th>نام نمایشی</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (userList.Any())
+                {
+                    foreach (var user in userList)
+                    {
+                        <tr>
+                            <td>@user.Username</td>
+                            <td>@user.Username</td>
+                            <td>@user.DisplayName</td>
+                            <td>
+                                <NavLink href="@($"register/edit/{user.Id}")" class="btn btn-primary">ویرایش</NavLink>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">No records found</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+
+    private List<UserRegisterDTO> userList = new List<UserRegisterDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await foreach (var user in usersService.GetAllUsersAsync())
+        {
+            userList.Add(user);
+        }
+    }
+
+}
