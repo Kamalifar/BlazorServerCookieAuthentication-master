@@ -1,5 +1,5 @@
 # BlazorServerCookieAuthentication-master
-It's a test project with BlazorServer that use a light cookie authenticator instead of Microsoft Identity.
+A cookie based authentication sample for BlzaorServer 6 without using the Identity system.
 
 Special thanks to <a href="https://github.com/VahidN/ASPNETCore2CookieAuthentication">VahidN</a>. This project has used his project <a href="https://github.com/VahidN/ASPNETCore2CookieAuthentication">ASPNETCore2CookieAuthentication</a>.  
 
