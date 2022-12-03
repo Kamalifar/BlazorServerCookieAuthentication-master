@@ -3,16 +3,16 @@
 @model BlazorServerTestDynamicAccess.Pages.Security.LoginModel
 @{
 }
-<h3>ورود به سیستم</h3>
+<h3>Login</h3>
 <div>
     <form method="post" enctype="multipart/form-data">
 
         <div class="form-group">
-            <input asp-for="loginUser.Username" type="text" class="form-control" placeholder="نام کاربری">
+            <input asp-for="loginUser.Username" type="text" class="form-control" placeholder="UserName">
         </div>
         <span asp-validation-for="loginUser.Username"></span>
         <div class="form-group">
-            <input asp-for="loginUser.Password" type="password" class="form-control" placeholder="رمز عبور ">
+            <input asp-for="loginUser.Password" type="password" class="form-control" placeholder="Password">
 
         </div>
         <span asp-validation-for="loginUser.Password"></span>
@@ -20,7 +20,7 @@
             <label><input asp-for="RememberMe" type="checkbox" name="">  مرا بخاطر بسپار </label>
             </div>*@
         <div class="form-group">
-        <input type="submit" value="ورود" class="btn btn-success"/>
+        <input type="submit" value="Login" class="btn btn-success"/>
         </div>
     </form>
 </div>

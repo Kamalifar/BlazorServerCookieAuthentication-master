@@ -11,7 +11,7 @@
     {
         if (HttpContext.User!=null)
         {
-            <p>شما با موفقیت از برنامه خارج شدید</p>
+            <p>You Successfuly logout</p>
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
         return Redirect("~/");

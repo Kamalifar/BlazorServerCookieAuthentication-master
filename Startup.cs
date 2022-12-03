@@ -5,6 +5,7 @@ using DNTCommon.Web.Core;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using BlazorServerTestDynamicAccess.Models.Mappings;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BlazorServerTestDynamicAccess
 {
@@ -36,6 +37,8 @@ namespace BlazorServerTestDynamicAccess
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<ICookieValidatorService, CookieValidatorService>();
             services.AddScoped<IDbInitializerService, DbInitializerService>();
+            services.AddSingleton<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(

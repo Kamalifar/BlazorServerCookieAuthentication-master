@@ -54,7 +54,7 @@ namespace BlazorServerTestDynamicAccess.Infralayer
                         var adminUser = new User
                         {
                             Username = "Ali",
-                            DisplayName = "علی",
+                            DisplayName = "Ali",
                             IsActive = true,
                             LastLoggedIn = null,
                             Password = _securityService.GetSha256Hash("1234"),

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\BlazorServerTestDynamicAccess\\BlazorServerTestDynamicAccess.csproj": {}
+    "C:\\Users\\user\\Source\\Repos\\BlazorServerCookieAuthentication-master\\BlazorServerTestDynamicAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\BlazorServerTestDynamicAccess\\BlazorServerTestDynamicAccess.csproj": {
+    "C:\\Users\\user\\Source\\Repos\\BlazorServerCookieAuthentication-master\\BlazorServerTestDynamicAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\BlazorServerTestDynamicAccess\\BlazorServerTestDynamicAccess.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\BlazorServerCookieAuthentication-master\\BlazorServerTestDynamicAccess.csproj",
         "projectName": "BlazorServerTestDynamicAccess",
-        "projectPath": "C:\\Users\\user\\source\\repos\\BlazorServerTestDynamicAccess\\BlazorServerTestDynamicAccess.csproj",
+        "projectPath": "C:\\Users\\user\\Source\\Repos\\BlazorServerCookieAuthentication-master\\BlazorServerTestDynamicAccess.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\BlazorServerTestDynamicAccess\\obj\\",
+        "outputPath": "C:\\Users\\user\\Source\\Repos\\BlazorServerCookieAuthentication-master\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
