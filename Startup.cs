@@ -37,7 +37,7 @@ namespace BlazorServerTestDynamicAccess
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<ICookieValidatorService, CookieValidatorService>();
             services.AddScoped<IDbInitializerService, DbInitializerService>();
-            services.AddSingleton<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
