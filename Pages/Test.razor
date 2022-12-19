@@ -1,5 +1,7 @@
 ﻿@page "/test2"
 
+@attribute [Authorize]
+
 <div class="">
 <input value="@Value" @oninput="@OnInputChange" />
 <h4>@Value</h4>
