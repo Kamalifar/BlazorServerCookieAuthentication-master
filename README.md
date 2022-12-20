@@ -9,7 +9,7 @@ Users and Roles tables with a many-to-many relationship.
 
 A separated EF Core data layer with enabled migrations.
 
-An EF Core 6.0.102 based service layer.
+An EF Core 7x based service layer.
 
 A Db initializer to seed the default database values.
 

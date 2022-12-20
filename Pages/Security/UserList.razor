@@ -1,6 +1,22 @@
 ﻿@page "/userlist"
 @inject IUsersService usersService
+@inject IUserInfoService UserInfoService
+
+@attribute [Authorize]
+
 <h3>لیست کاربران</h3>
+
+<div class="alert alert-info mb-3 mt-3">
+    <ul>
+        Current User
+        <li>
+            Id: @UserId
+        </li>
+        <li>
+            DisplayName: @DisplayName
+        </li>
+    </ul>
+</div>
 
 <div class="row mt-4">
     <div class="col-8">
@@ -51,6 +67,8 @@
 @code {
 
     private List<UserRegisterDTO> userList = new List<UserRegisterDTO>();
+    private string? UserId { set; get; }
+    private string? DisplayName { set; get; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -58,6 +76,9 @@
         {
             userList.Add(user);
         }
+
+        UserId = await UserInfoService.GetUserIdAsync();
+        DisplayName = await UserInfoService.GetUserClaimValueAsync("DisplayName");
     }
 
 }

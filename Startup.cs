@@ -38,6 +38,7 @@ namespace BlazorServerTestDynamicAccess
             services.AddScoped<ICookieValidatorService, CookieValidatorService>();
             services.AddScoped<IDbInitializerService, DbInitializerService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddScoped<IUserInfoService, UserInfoService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -109,7 +110,7 @@ namespace BlazorServerTestDynamicAccess
             var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
             using (var scope = scopeFactory.CreateScope())
             {
-                var dbInitializer = scope.ServiceProvider.GetService<IDbInitializerService>();
+                var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializerService>();
                 dbInitializer.Initialize();
                 dbInitializer.SeedData();
             }

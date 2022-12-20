@@ -63,8 +63,21 @@ namespace BlazorServerTestDynamicAccess.Infralayer
                         context.Add(adminUser);
                         context.SaveChanges();
 
+                        var normalUser = new User
+                                        {
+                                            Username = "Test",
+                                            DisplayName = "Test User",
+                                            IsActive = true,
+                                            LastLoggedIn = null,
+                                            Password = _securityService.GetSha256Hash("1234"),
+                                            SerialNumber = Guid.NewGuid().ToString("N")
+                                        };
+                        context.Add(normalUser);
+                        context.SaveChanges();
+                        
                         context.Add(new UserRole { Role = adminRole, User = adminUser });
                         context.Add(new UserRole { Role = userRole, User = adminUser });
+                        context.Add(new UserRole { Role = userRole, User = normalUser });
                         context.SaveChanges();
                     }
                 }
