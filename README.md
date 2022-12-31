@@ -1,5 +1,5 @@
 # BlazorServerCookieAuthentication-master
-A cookie based authentication sample for BlzaorServer 6 without using the Identity system.
+A cookie based authentication sample for BlzaorServer without using the Identity system.
 
 Special thanks to <a href="https://github.com/VahidN/ASPNETCore2CookieAuthentication">VahidN</a>. This project has used his project <a href="https://github.com/VahidN/ASPNETCore2CookieAuthentication">ASPNETCore2CookieAuthentication</a>.  
 
