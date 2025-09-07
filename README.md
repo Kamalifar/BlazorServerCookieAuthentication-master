@@ -14,7 +14,3 @@ An EF Core 7x based service layer.
 A Db initializer to seed the default database values.
 
 A User and Role Services with cookie and DB based login and logout capabilities.
-
-Note: My other account is AlirezaSadabadi. I moved this project to that account. 
-
-https://github.com/AlirezaSadabadi/BlazorServerCookieAuthentication
